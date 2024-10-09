@@ -4,6 +4,8 @@ import ConfigScreen, {PluginConfig} from "./entrypoints/ConfigScreen";
 import {render} from "./utils/render";
 import {FormOutlet} from "./components/FormOutlet.tsx";
 
+let i = 1;
+
 connect({
     renderConfigScreen(ctx) {
         return render(<ConfigScreen ctx={ctx}/>);
@@ -38,8 +40,6 @@ connect({
         }
     },
     renderItemFormOutlet(outletId: string, ctx: RenderItemFormOutletCtx) {
-        let i = 1;
-
         switch (outletId) {
             case "global_dynamic_computed_fields":
                 console.warn(`Rendering Form Outlet ID '${outletId}' for model '${ctx.itemType.attributes.api_key}'. Counter = ${i}`); // This is logged multiple times, but not each time the form loads
