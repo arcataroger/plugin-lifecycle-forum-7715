@@ -40,9 +40,15 @@ connect({
         }
     },
     renderItemFormOutlet(outletId: string, ctx: RenderItemFormOutletCtx) {
+        const doubleWarn = (msg: string): void => {
+            const msgWithTimestamp = `${msg} @ time ${performance.now()}`
+            ctx.notice(msgWithTimestamp)
+            console.info(msgWithTimestamp)
+        }
+
         switch (outletId) {
             case "global_dynamic_computed_fields":
-                console.warn(`Rendering Form Outlet ID '${outletId}' for model '${ctx.itemType.attributes.api_key}'. Counter = ${i}`); // This is logged multiple times, but not each time the form loads
+                doubleWarn(`Rendering '${outletId}' for model '${ctx.itemType.attributes.api_key}'. Counter = ${i}`); // This is logged multiple times, but not each time the form loads
                 i++;
                 return render(<FormOutlet ctx={ctx}/>)
         }
