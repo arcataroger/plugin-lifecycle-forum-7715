@@ -38,9 +38,12 @@ connect({
         }
     },
     renderItemFormOutlet(outletId: string, ctx: RenderItemFormOutletCtx) {
+        let i = 1;
+
         switch (outletId) {
             case "global_dynamic_computed_fields":
-                console.debug(`Rendering Form Outlet: ${outletId}`); // This is logged multiple times, but not each time the form loads
+                console.warn(`Rendering Form Outlet ID '${outletId}' for model '${ctx.itemType.attributes.api_key}'. Counter = ${i}`); // This is logged multiple times, but not each time the form loads
+                i++;
                 return render(<FormOutlet ctx={ctx}/>)
         }
     },
