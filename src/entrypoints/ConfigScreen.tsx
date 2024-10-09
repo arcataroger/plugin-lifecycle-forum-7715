@@ -40,8 +40,13 @@ export default function ConfigScreen({ctx}: { ctx: RenderConfigScreenCtx }) {
     }, [modelApiKeys, pluginParams.modelApiKeys]);
 
 
+    const lastCommit = typeof(process) !== 'undefined' && process.env?.VERCEL_GIT_COMMIT_SHA;
+
+
     return (
         <Canvas ctx={ctx}>
+            <h2>This instance is running on {window.location.hostname}</h2>
+            {lastCommit && <h3>Built from commit <a href={lastCommit} target='_blank'>{lastCommit.slice(-7)}</a></h3>}
             <Form>
                 <SelectField
                     name="modelApiKeys"
